@@ -52,10 +52,10 @@ return res.send(word);
 app.post('/score',async (req,res)=>{
     let {score,name}=req.body 
    
-   
-    let u=await User.updateOne({name:name},{$set:{score:score}})
     let user=await User.findOne({name:name})
     console.log(user)
+    let u=await User.updateOne({name:name},{$set:{score:user.score+score}})
+    
     return res.send(u)
     
 })
